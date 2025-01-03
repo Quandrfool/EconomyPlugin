@@ -1,0 +1,17 @@
+name: EconomyPlugin
+version: '1.0'
+main: ru.economyPlugin.EconomyPlugin
+api-version: '1.20'
+depend: [Vault]
+softdepend: [Vault]
+
+commands:
+  bal:
+    aliases: [balance]
+  pay: {}
+  eco:
+    aliases: [economy, economyplugin]
+
+permissions:
+  economy.eco: {}
+  economy.bal.others: {}
