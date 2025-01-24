@@ -1,5 +1,6 @@
 package ru.economyPlugin;
 
+import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Server;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
@@ -17,6 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public final class EconomyPlugin extends JavaPlugin {
 
+    public final static EconomyResponse failresp = new EconomyResponse(-1, -1, EconomyResponse.ResponseType.FAILURE, "Exception");
     public final static HashSet<Player> players = new HashSet<>();
     public final static ConcurrentHashMap<UUID, Double> balances = new ConcurrentHashMap<>();
     final static Random rand = new Random();

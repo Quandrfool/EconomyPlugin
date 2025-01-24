@@ -1,9 +1,8 @@
 name: EconomyPlugin
-version: '1.1'
+version: '1.2'
 main: ru.economyPlugin.EconomyPlugin
 api-version: '1.20'
 depend: [Vault]
-softdepend: [Vault]
 
 commands:
   bal:

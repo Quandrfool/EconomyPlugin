@@ -3,7 +3,7 @@ package ru.economyPlugin;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.world.WorldSaveEvent;
 
@@ -18,7 +18,7 @@ import static ru.economyPlugin.EconomyPlugin.*;
 public class ListenerRAM implements org.bukkit.event.Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void onJoin(PlayerLoginEvent event) {
+    public void onJoin(PlayerJoinEvent event) {
         final Player player = event.getPlayer();
         final UUID uuid = player.getUniqueId();
         final File datafile = new File(datafolderpath + "/" + uuid);
@@ -28,7 +28,9 @@ public class ListenerRAM implements org.bukkit.event.Listener {
             } else {
                 balances.put(uuid, 0.0);
             }
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         players.add(player);
     }
 
@@ -48,7 +50,9 @@ public class ListenerRAM implements org.bukkit.event.Listener {
             } else {
                 datafile.delete();
             }
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @EventHandler
