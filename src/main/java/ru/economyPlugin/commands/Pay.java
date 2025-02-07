@@ -12,7 +12,7 @@ import java.util.UUID;
 
 import static ru.economyPlugin.EconomyPlugin.*;
 
-public class Payc implements CommandExecutor, TabCompleter {
+public class Pay implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {

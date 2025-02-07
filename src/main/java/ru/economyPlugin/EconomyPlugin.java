@@ -6,9 +6,9 @@ import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
-import ru.economyPlugin.commands.Balc;
-import ru.economyPlugin.commands.Ecoc;
-import ru.economyPlugin.commands.Payc;
+import ru.economyPlugin.commands.Bal;
+import ru.economyPlugin.commands.Eco;
+import ru.economyPlugin.commands.Pay;
 
 import java.io.File;
 import java.util.HashSet;
@@ -59,11 +59,11 @@ public final class EconomyPlugin extends JavaPlugin {
             server.getPluginManager().registerEvents(new ListenerRAM(), plugin);
         }
         final PluginCommand ecoCommand = getCommand("eco");
-        final Ecoc ecoExecutor = new Ecoc();
+        final Eco ecoExecutor = new Eco();
         final PluginCommand balCommand = getCommand("bal");
-        final Balc balExecutor = new Balc();
+        final Bal balExecutor = new Bal();
         final PluginCommand payCommand = getCommand("pay");
-        final Payc payExecutor = new Payc();
+        final Pay payExecutor = new Pay();
         ecoCommand.setExecutor(ecoExecutor);
         ecoCommand.setTabCompleter(ecoExecutor);
         balCommand.setExecutor(balExecutor);

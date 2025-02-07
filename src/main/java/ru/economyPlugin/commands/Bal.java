@@ -14,7 +14,7 @@ import java.util.List;
 
 import static ru.economyPlugin.EconomyPlugin.*;
 
-public class Balc implements CommandExecutor, TabCompleter {
+public class Bal implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
