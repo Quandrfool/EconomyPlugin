@@ -12,7 +12,7 @@ import static ru.economyPlugin.EconomyPlugin.*;
 public class Config {
 
     public static void loadConfig() {
-        final String defcfg = "# указывает на то, что плагину нужно делать\n" +
+        final String defCfg = "# указывает на то, что плагину нужно делать\n" +
                 "# ram - плагин будет хранить всю информацию о том, у кого сколько денег на диске, и загружать в оперативную память когда игрок будет заходить на сервер\n" +
                 "# cpu - плагин будет хранить всю информацию о том, у кого сколько денег всегда в оперативной памяти\n" +
                 "# при изменении значения этого параметра изменения применяются только после полной перезагрузки сервера\n" +
@@ -32,34 +32,34 @@ public class Config {
                 "payusage-msg: \"§cИспользуйте /pay <игрок> <сумма>\"\n" +
                 "balusage-msg: \"§cИспользуйте /bal <игрок>\"\n" +
                 "noperm-msg: \"§cУ вас нет права выполнять эту команду\"";
-        final File cfgdir = new File(configfolderpath);
-        if (!cfgdir.exists()) {
-            cfgdir.mkdir();
+        final File cfgDir = new File(configFolderPath);
+        if (!cfgDir.exists()) {
+            cfgDir.mkdir();
         }
-        final File cfg = new File(configfolderpath + "/config.yml");
+        final File cfg = new File(configFolderPath + "/config.yml");
         try {
             if (!cfg.exists()) {
                 cfg.createNewFile();
                 final FileWriter writer = new FileWriter(cfg);
-                writer.write(defcfg);
+                writer.write(defCfg);
                 writer.close();
             }
             processOptions(new String(Files.readAllBytes(Paths.get(cfg.getAbsolutePath()))).split("\n"));
         } catch (Exception e) {
             try {
-                final String newname = "config-" + rand.nextInt(999999999) + ".yml";
-                final File oldcfg = new File(configfolderpath + "/" + newname);
-                oldcfg.createNewFile();
-                FileWriter writer = new FileWriter(oldcfg);
+                final String newName = "config-" + rand.nextInt(999999999) + ".yml";
+                final File oldCfg = new File(configFolderPath + "/" + newName);
+                oldCfg.createNewFile();
+                FileWriter writer = new FileWriter(oldCfg);
                 writer.write(new String(Files.readAllBytes(Paths.get(cfg.getAbsolutePath()))));
                 writer.close();
                 cfg.delete();
                 cfg.createNewFile();
                 writer = new FileWriter(cfg);
-                writer.write(defcfg);
+                writer.write(defCfg);
                 writer.close();
                 processOptions(new String(Files.readAllBytes(Paths.get(cfg.getAbsolutePath()))).split("\n"));
-                Bukkit.getLogger().info("§cВо время загрузки конфигурации произошла ошибка, поэтому была загружена дефолтная конфигурация, ваша старая была сохранена в файл " + newname);
+                Bukkit.getLogger().info("§cВо время загрузки конфигурации произошла ошибка, поэтому была загружена дефолтная конфигурация, ваша старая была сохранена в файл " + newName);
                 Bukkit.getLogger().info("StackTrace:");
                 e.printStackTrace();
             } catch (Exception ee) {
@@ -77,9 +77,9 @@ public class Config {
             switch (parameter) {
                 case "optimization":
                     if (value.equals("cpu")) {
-                        optimizationcpu = true;
+                        optimizationCpu = true;
                     } else {
-                        optimizationcpu = false;
+                        optimizationCpu = false;
                     }
                     break;
                 case "reload-msg":

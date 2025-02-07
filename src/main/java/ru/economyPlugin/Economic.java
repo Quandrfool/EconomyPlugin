@@ -56,48 +56,48 @@ public class Economic implements Economy {
     public EconomyResponse depositPlayer(String name, double amount) {
         try {
             final UUID uuid = Bukkit.getOfflinePlayer(name).getUniqueId();
-            final double newbal = balances.get(uuid) + amount;
-            balances.put(uuid, newbal);
-            return new EconomyResponse(amount, newbal, EconomyResponse.ResponseType.SUCCESS, "");
+            final double newBal = balances.get(uuid) + amount;
+            balances.put(uuid, newBal);
+            return new EconomyResponse(amount, newBal, EconomyResponse.ResponseType.SUCCESS, "");
         } catch (Exception e) {
             e.printStackTrace();
-            return failresp;
+            return failResp;
         }
     }
 
     public EconomyResponse depositPlayer(OfflinePlayer player, double amount) {
         try {
             final UUID uuid = player.getUniqueId();
-            final double newbal = balances.get(uuid) + amount;
-            balances.put(uuid, newbal);
-            return new EconomyResponse(amount, newbal, EconomyResponse.ResponseType.SUCCESS, "");
+            final double newBal = balances.get(uuid) + amount;
+            balances.put(uuid, newBal);
+            return new EconomyResponse(amount, newBal, EconomyResponse.ResponseType.SUCCESS, "");
         } catch (Exception e) {
             e.printStackTrace();
-            return failresp;
+            return failResp;
         }
     }
 
     public EconomyResponse depositPlayer(String name, String world, double amount) {
         try {
             final UUID uuid = Bukkit.getOfflinePlayer(name).getUniqueId();
-            final double newbal = balances.get(uuid) + amount;
-            balances.put(uuid, newbal);
-            return new EconomyResponse(amount, newbal, EconomyResponse.ResponseType.SUCCESS, "");
+            final double newBal = balances.get(uuid) + amount;
+            balances.put(uuid, newBal);
+            return new EconomyResponse(amount, newBal, EconomyResponse.ResponseType.SUCCESS, "");
         } catch (Exception e) {
             e.printStackTrace();
-            return failresp;
+            return failResp;
         }
     }
 
     public EconomyResponse depositPlayer(OfflinePlayer player, String world, double amount) {
         try {
             final UUID uuid = player.getUniqueId();
-            final double newbal = balances.get(uuid) + amount;
-            balances.put(uuid, newbal);
-            return new EconomyResponse(amount, newbal, EconomyResponse.ResponseType.SUCCESS, "");
+            final double newBal = balances.get(uuid) + amount;
+            balances.put(uuid, newBal);
+            return new EconomyResponse(amount, newBal, EconomyResponse.ResponseType.SUCCESS, "");
         } catch (Exception e) {
             e.printStackTrace();
-            return failresp;
+            return failResp;
         }
     }
 
@@ -156,48 +156,48 @@ public class Economic implements Economy {
     public EconomyResponse withdrawPlayer(String name, double amount) {
         try {
             final UUID uuid = Bukkit.getOfflinePlayer(name).getUniqueId();
-            final double newbal = balances.get(uuid) - amount;
-            balances.put(uuid, newbal);
-            return new EconomyResponse(amount, newbal, EconomyResponse.ResponseType.SUCCESS, "");
+            final double newBal = balances.get(uuid) - amount;
+            balances.put(uuid, newBal);
+            return new EconomyResponse(amount, newBal, EconomyResponse.ResponseType.SUCCESS, "");
         } catch (Exception e) {
             e.printStackTrace();
-            return failresp;
+            return failResp;
         }
     }
 
     public EconomyResponse withdrawPlayer(OfflinePlayer player, double amount) {
         try {
             final UUID uuid = player.getUniqueId();
-            final double newbal = balances.get(uuid) - amount;
-            balances.put(uuid, newbal);
-            return new EconomyResponse(amount, newbal, EconomyResponse.ResponseType.SUCCESS, "");
+            final double newBal = balances.get(uuid) - amount;
+            balances.put(uuid, newBal);
+            return new EconomyResponse(amount, newBal, EconomyResponse.ResponseType.SUCCESS, "");
         } catch (Exception e) {
             e.printStackTrace();
-            return failresp;
+            return failResp;
         }
     }
 
     public EconomyResponse withdrawPlayer(String name, String world, double amount) {
         try {
             final UUID uuid = Bukkit.getOfflinePlayer(name).getUniqueId();
-            final double newbal = balances.get(uuid) - amount;
-            balances.put(uuid, newbal);
-            return new EconomyResponse(amount, newbal, EconomyResponse.ResponseType.SUCCESS, "");
+            final double newBal = balances.get(uuid) - amount;
+            balances.put(uuid, newBal);
+            return new EconomyResponse(amount, newBal, EconomyResponse.ResponseType.SUCCESS, "");
         } catch (Exception e) {
             e.printStackTrace();
-            return failresp;
+            return failResp;
         }
     }
 
     public EconomyResponse withdrawPlayer(OfflinePlayer player, String world, double amount) {
         try {
             final UUID uuid = player.getUniqueId();
-            final double newbal = balances.get(uuid) - amount;
-            balances.put(uuid, newbal);
-            return new EconomyResponse(amount, newbal, EconomyResponse.ResponseType.SUCCESS, "");
+            final double newBal = balances.get(uuid) - amount;
+            balances.put(uuid, newBal);
+            return new EconomyResponse(amount, newBal, EconomyResponse.ResponseType.SUCCESS, "");
         } catch (Exception e) {
             e.printStackTrace();
-            return failresp;
+            return failResp;
         }
     }
 

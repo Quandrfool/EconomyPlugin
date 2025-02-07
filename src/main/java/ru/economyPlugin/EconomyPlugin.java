@@ -6,9 +6,9 @@ import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
-import ru.economyPlugin.commands.bal;
-import ru.economyPlugin.commands.eco;
-import ru.economyPlugin.commands.pay;
+import ru.economyPlugin.commands.Balc;
+import ru.economyPlugin.commands.Ecoc;
+import ru.economyPlugin.commands.Payc;
 
 import java.io.File;
 import java.util.HashSet;
@@ -18,15 +18,15 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public final class EconomyPlugin extends JavaPlugin {
 
-    public final static EconomyResponse failresp = new EconomyResponse(-1, -1, EconomyResponse.ResponseType.FAILURE, "Exception");
+    public final static EconomyResponse failResp = new EconomyResponse(-1, -1, EconomyResponse.ResponseType.FAILURE, "Exception");
     public final static HashSet<Player> players = new HashSet<>();
     public final static ConcurrentHashMap<UUID, Double> balances = new ConcurrentHashMap<>();
     final static Random rand = new Random();
     static JavaPlugin plugin;
-    static String configfolderpath;
-    static String datafolderpath;
-    static long savetime = 0;
-    static boolean optimizationcpu = true;
+    static String configFolderPath;
+    static String dataFolderPath;
+    static long saveTime = 0;
+    static boolean optimizationCpu = true;
     public static String reloadmsg = "";
     public static String playernotfoundmsg = "";
     public static String invalidamountmsg = "";
@@ -45,35 +45,35 @@ public final class EconomyPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = getPlugin(EconomyPlugin.class);
-        configfolderpath = plugin.getDataFolder().getAbsolutePath();
+        configFolderPath = plugin.getDataFolder().getAbsolutePath();
         final Server server = getServer();
         Config.loadConfig();
-        datafolderpath = configfolderpath + "/playerdata";
-        final File datafolder = new File(datafolderpath);
-        if (!datafolder.exists()) datafolder.mkdir();
+        dataFolderPath = configFolderPath + "/playerdata";
+        final File dataFolder = new File(dataFolderPath);
+        if (!dataFolder.exists()) dataFolder.mkdir();
         server.getServicesManager().register(net.milkbowl.vault.economy.Economy.class, new Economic(), plugin, ServicePriority.Highest);
-        if (optimizationcpu) {
+        if (optimizationCpu) {
             server.getPluginManager().registerEvents(new ListenerCPU(), plugin);
-            Utils.loaddata();
+            Utils.loadData();
         } else {
             server.getPluginManager().registerEvents(new ListenerRAM(), plugin);
         }
-        final PluginCommand ecocommand = getCommand("eco");
-        final eco ecoexecutor = new eco();
-        final PluginCommand balcommand = getCommand("bal");
-        final bal balexecutor = new bal();
-        final PluginCommand paycommand = getCommand("pay");
-        final pay payexecutor = new pay();
-        ecocommand.setExecutor(ecoexecutor);
-        ecocommand.setTabCompleter(ecoexecutor);
-        balcommand.setExecutor(balexecutor);
-        balcommand.setTabCompleter(balexecutor);
-        paycommand.setExecutor(payexecutor);
-        paycommand.setTabCompleter(payexecutor);
+        final PluginCommand ecoCommand = getCommand("eco");
+        final Ecoc ecoExecutor = new Ecoc();
+        final PluginCommand balCommand = getCommand("bal");
+        final Balc balExecutor = new Balc();
+        final PluginCommand payCommand = getCommand("pay");
+        final Payc payExecutor = new Payc();
+        ecoCommand.setExecutor(ecoExecutor);
+        ecoCommand.setTabCompleter(ecoExecutor);
+        balCommand.setExecutor(balExecutor);
+        balCommand.setTabCompleter(balExecutor);
+        payCommand.setExecutor(payExecutor);
+        payCommand.setTabCompleter(payExecutor);
     }
 
     @Override
     public void onDisable() {
-        Utils.savedata();
+        Utils.saveData();
     }
 }

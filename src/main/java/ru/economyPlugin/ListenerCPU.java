@@ -28,8 +28,8 @@ public class ListenerCPU implements org.bukkit.event.Listener {
 
     @EventHandler
     public void onSave(WorldSaveEvent event) {
-        final long currtime = System.currentTimeMillis();
-        if (currtime - savetime > 5000) Utils.savedata();
-        savetime = currtime;
+        final long currTime = System.currentTimeMillis();
+        if (currTime - saveTime > 5000) Utils.saveData();
+        saveTime = currTime;
     }
 }

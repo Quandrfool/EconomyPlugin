@@ -16,7 +16,7 @@ import java.util.UUID;
 
 import static ru.economyPlugin.EconomyPlugin.*;
 
-public class eco implements CommandExecutor, TabCompleter {
+public class Ecoc implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {

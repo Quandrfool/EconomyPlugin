@@ -12,7 +12,7 @@ import java.util.UUID;
 
 import static ru.economyPlugin.EconomyPlugin.*;
 
-public class pay implements CommandExecutor, TabCompleter {
+public class Payc implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -23,15 +23,15 @@ public class pay implements CommandExecutor, TabCompleter {
                 if (player != null && players.contains(player)) {
                     try {
                         final double amount = Double.parseDouble(args[1]);
-                        final UUID senderuuid = ((Player) sender).getUniqueId();
-                        final double senderbal = balances.get(senderuuid);
-                        if (senderbal < amount) {
+                        final UUID senderUuid = ((Player) sender).getUniqueId();
+                        final double senderBal = balances.get(senderUuid);
+                        if (senderBal < amount) {
                             sender.sendMessage(nomoneymsg);
                             return false;
                         }
-                        final UUID targetuuid = player.getUniqueId();
-                        balances.put(senderuuid, senderbal - amount);
-                        balances.put(targetuuid, balances.get(targetuuid) + amount);
+                        final UUID targetUuid = player.getUniqueId();
+                        balances.put(senderUuid, senderBal - amount);
+                        balances.put(targetUuid, balances.get(targetUuid) + amount);
                         sender.sendMessage(paymsg.replace("%nick%", args[0]).replace("%amount%", amount + ""));
                     } catch (Exception e) {
                         sender.sendMessage(invalidamountmsg);

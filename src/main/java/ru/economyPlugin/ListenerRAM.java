@@ -21,10 +21,10 @@ public class ListenerRAM implements org.bukkit.event.Listener {
     public void onJoin(PlayerJoinEvent event) {
         final Player player = event.getPlayer();
         final UUID uuid = player.getUniqueId();
-        final File datafile = new File(datafolderpath + "/" + uuid);
+        final File dataFile = new File(dataFolderPath + "/" + uuid);
         try {
-            if (datafile.exists()) {
-                balances.put(uuid, Double.parseDouble(new String(Files.readAllBytes(Paths.get(datafile.getAbsolutePath())))));
+            if (dataFile.exists()) {
+                balances.put(uuid, Double.parseDouble(new String(Files.readAllBytes(Paths.get(dataFile.getAbsolutePath())))));
             } else {
                 balances.put(uuid, 0.0);
             }
@@ -39,16 +39,16 @@ public class ListenerRAM implements org.bukkit.event.Listener {
         final Player player = event.getPlayer();
         players.remove(player);
         final UUID uuid = player.getUniqueId();
-        final File datafile = new File(datafolderpath + "/" + uuid);
+        final File dataFile = new File(dataFolderPath + "/" + uuid);
         try {
             final double bal = balances.get(uuid);
             if (bal != 0.0) {
-                if (!datafile.exists()) datafile.createNewFile();
-                final FileWriter writer = new FileWriter(datafile);
+                if (!dataFile.exists()) dataFile.createNewFile();
+                final FileWriter writer = new FileWriter(dataFile);
                 writer.write(bal + "");
                 writer.close();
             } else {
-                datafile.delete();
+                dataFile.delete();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,8 +57,8 @@ public class ListenerRAM implements org.bukkit.event.Listener {
 
     @EventHandler
     public void onSave(WorldSaveEvent event) {
-        final long currtime = System.currentTimeMillis();
-        if (currtime - savetime > 5000) Utils.savedata();
-        savetime = currtime;
+        final long currTime = System.currentTimeMillis();
+        if (currTime - saveTime > 5000) Utils.saveData();
+        saveTime = currTime;
     }
 }
