@@ -2,6 +2,7 @@ package ru.economyPlugin;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.UUID;
@@ -23,17 +24,21 @@ public class Utils {
     public static void saveData() {
         try {
             for (UUID uuid : balances.keySet()) {
-                final File dataFile = new File(dataFolderPath + "/" + uuid);
-                final double bal = balances.get(uuid);
-                if (bal != 0.0) {
-                    if (!dataFile.exists()) dataFile.createNewFile();
-                    final FileWriter writer = new FileWriter(dataFile);
-                    writer.write(bal + "");
-                    writer.close();
-                } else {
-                    dataFile.delete();
-                }
+                saveUuidData(uuid);
             }
         } catch (Exception e) {}
+    }
+
+    public static void saveUuidData(UUID uuid) throws IOException {
+        final File dataFile = new File(dataFolderPath + "/" + uuid);
+        final double bal = balances.get(uuid);
+        if (bal != 0.0) {
+            if (!dataFile.exists()) dataFile.createNewFile();
+            final FileWriter writer = new FileWriter(dataFile);
+            writer.write(bal + "");
+            writer.close();
+        } else {
+            dataFile.delete();
+        }
     }
 }

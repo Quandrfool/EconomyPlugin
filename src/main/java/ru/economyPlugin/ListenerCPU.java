@@ -8,6 +8,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.world.WorldSaveEvent;
 
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import static ru.economyPlugin.EconomyPlugin.*;
 
@@ -28,8 +29,15 @@ public class ListenerCPU implements org.bukkit.event.Listener {
 
     @EventHandler
     public void onSave(WorldSaveEvent event) {
-        final long currTime = System.currentTimeMillis();
-        if (currTime - saveTime > 5000) Utils.saveData();
-        saveTime = currTime;
+        final long currentTime = System.currentTimeMillis();
+        if (currentTime - saveTime > 5000) {
+            ses.schedule(new Runnable() {
+                @Override
+                public void run() {
+                    Utils.saveData();
+                }
+            }, 0, TimeUnit.MILLISECONDS);
+            saveTime = currentTime;
+        }
     }
 }

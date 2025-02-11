@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.UUID;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
-import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 
 import static ru.economyPlugin.EconomyPlugin.*;
@@ -34,7 +33,7 @@ public class Economic implements Economy {
     }
 
     public boolean createPlayerAccount(String name) {
-        balances.putIfAbsent(Bukkit.getOfflinePlayer(name).getUniqueId(), 0.0);
+        balances.putIfAbsent(server.getOfflinePlayer(name).getUniqueId(), 0.0);
         return true;
     }
 
@@ -44,7 +43,7 @@ public class Economic implements Economy {
     }
 
     public boolean createPlayerAccount(String name, String world) {
-        balances.putIfAbsent(Bukkit.getOfflinePlayer(name).getUniqueId(), 0.0);
+        balances.putIfAbsent(server.getOfflinePlayer(name).getUniqueId(), 0.0);
         return true;
     }
 
@@ -55,7 +54,7 @@ public class Economic implements Economy {
 
     public EconomyResponse depositPlayer(String name, double amount) {
         try {
-            final UUID uuid = Bukkit.getOfflinePlayer(name).getUniqueId();
+            final UUID uuid = server.getOfflinePlayer(name).getUniqueId();
             final double newBal = balances.get(uuid) + amount;
             balances.put(uuid, newBal);
             return new EconomyResponse(amount, newBal, EconomyResponse.ResponseType.SUCCESS, "");
@@ -79,7 +78,7 @@ public class Economic implements Economy {
 
     public EconomyResponse depositPlayer(String name, String world, double amount) {
         try {
-            final UUID uuid = Bukkit.getOfflinePlayer(name).getUniqueId();
+            final UUID uuid = server.getOfflinePlayer(name).getUniqueId();
             final double newBal = balances.get(uuid) + amount;
             balances.put(uuid, newBal);
             return new EconomyResponse(amount, newBal, EconomyResponse.ResponseType.SUCCESS, "");
@@ -102,7 +101,7 @@ public class Economic implements Economy {
     }
 
     public double getBalance(String name) {
-        return balances.getOrDefault(Bukkit.getOfflinePlayer(name).getUniqueId(), 0.0);
+        return balances.getOrDefault(server.getOfflinePlayer(name).getUniqueId(), 0.0);
     }
 
     public double getBalance(OfflinePlayer player) {
@@ -110,7 +109,7 @@ public class Economic implements Economy {
     }
 
     public double getBalance(String name, String world) {
-        return balances.getOrDefault(Bukkit.getOfflinePlayer(name).getUniqueId(), 0.0);
+        return balances.getOrDefault(server.getOfflinePlayer(name).getUniqueId(), 0.0);
     }
 
     public double getBalance(OfflinePlayer player, String world) {
@@ -122,7 +121,7 @@ public class Economic implements Economy {
     }
 
     public boolean has(String name, double amount) {
-        return balances.getOrDefault(Bukkit.getOfflinePlayer(name).getUniqueId(), 0.0) >= amount;
+        return balances.getOrDefault(server.getOfflinePlayer(name).getUniqueId(), 0.0) >= amount;
     }
 
     public boolean has(OfflinePlayer player, double amount) {
@@ -130,7 +129,7 @@ public class Economic implements Economy {
     }
 
     public boolean has(String name, String world, double amount) {
-        return balances.getOrDefault(Bukkit.getOfflinePlayer(name).getUniqueId(), 0.0) >= amount;
+        return balances.getOrDefault(server.getOfflinePlayer(name).getUniqueId(), 0.0) >= amount;
     }
 
     public boolean has(OfflinePlayer player, String world, double amount) {
@@ -138,7 +137,7 @@ public class Economic implements Economy {
     }
 
     public boolean hasAccount(String name) {
-        return balances.containsKey(Bukkit.getOfflinePlayer(name).getUniqueId());
+        return balances.containsKey(server.getOfflinePlayer(name).getUniqueId());
     }
 
     public boolean hasAccount(OfflinePlayer player) {
@@ -146,7 +145,7 @@ public class Economic implements Economy {
     }
 
     public boolean hasAccount(String name, String world) {
-        return balances.containsKey(Bukkit.getOfflinePlayer(name).getUniqueId());
+        return balances.containsKey(server.getOfflinePlayer(name).getUniqueId());
     }
 
     public boolean hasAccount(OfflinePlayer player, String world) {
@@ -155,7 +154,7 @@ public class Economic implements Economy {
 
     public EconomyResponse withdrawPlayer(String name, double amount) {
         try {
-            final UUID uuid = Bukkit.getOfflinePlayer(name).getUniqueId();
+            final UUID uuid = server.getOfflinePlayer(name).getUniqueId();
             final double newBal = balances.get(uuid) - amount;
             balances.put(uuid, newBal);
             return new EconomyResponse(amount, newBal, EconomyResponse.ResponseType.SUCCESS, "");
@@ -179,7 +178,7 @@ public class Economic implements Economy {
 
     public EconomyResponse withdrawPlayer(String name, String world, double amount) {
         try {
-            final UUID uuid = Bukkit.getOfflinePlayer(name).getUniqueId();
+            final UUID uuid = server.getOfflinePlayer(name).getUniqueId();
             final double newBal = balances.get(uuid) - amount;
             balances.put(uuid, newBal);
             return new EconomyResponse(amount, newBal, EconomyResponse.ResponseType.SUCCESS, "");

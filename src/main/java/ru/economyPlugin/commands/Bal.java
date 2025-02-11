@@ -1,6 +1,5 @@
 package ru.economyPlugin.commands;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -26,7 +25,7 @@ public class Bal implements CommandExecutor, TabCompleter {
                 break;
             case 1:
                 if (sender.hasPermission("economy.bal.others")) {
-                    final Player player = Bukkit.getPlayer(args[0]);
+                    final Player player = server.getPlayer(args[0]);
                     if (player != null && players.contains(player)) {
                         sender.sendMessage(balothersmsg.replace("%nick%", args[0]).replace("%amount%", balances.get(player.getUniqueId()) + ""));
                     } else {

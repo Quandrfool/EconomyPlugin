@@ -1,6 +1,5 @@
 package ru.economyPlugin.commands;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -31,7 +30,7 @@ public class Eco implements CommandExecutor, TabCompleter {
                     }
                     break;
                 case 3:
-                    final Player player = Bukkit.getPlayer(args[1]);
+                    final Player player = server.getPlayer(args[1]);
                     if (player != null && players.contains(player)) {
                         try {
                             final double amount = Double.parseDouble(args[2]);

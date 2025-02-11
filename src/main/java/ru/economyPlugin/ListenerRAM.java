@@ -8,10 +8,10 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.world.WorldSaveEvent;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import static ru.economyPlugin.EconomyPlugin.*;
 
@@ -39,26 +39,22 @@ public class ListenerRAM implements org.bukkit.event.Listener {
         final Player player = event.getPlayer();
         players.remove(player);
         final UUID uuid = player.getUniqueId();
-        final File dataFile = new File(dataFolderPath + "/" + uuid);
         try {
-            final double bal = balances.get(uuid);
-            if (bal != 0.0) {
-                if (!dataFile.exists()) dataFile.createNewFile();
-                final FileWriter writer = new FileWriter(dataFile);
-                writer.write(bal + "");
-                writer.close();
-            } else {
-                dataFile.delete();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            Utils.saveUuidData(uuid);
+        } catch (Exception e) {}
     }
 
     @EventHandler
     public void onSave(WorldSaveEvent event) {
-        final long currTime = System.currentTimeMillis();
-        if (currTime - saveTime > 5000) Utils.saveData();
-        saveTime = currTime;
+        final long currentTime = System.currentTimeMillis();
+        if (currentTime - saveTime > 5000) {
+            ses.schedule(new Runnable() {
+                @Override
+                public void run() {
+                    Utils.saveData();
+                }
+            }, 0, TimeUnit.MILLISECONDS);
+            saveTime = currentTime;
+        }
     }
 }

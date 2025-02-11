@@ -15,13 +15,17 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 public final class EconomyPlugin extends JavaPlugin {
 
     public final static EconomyResponse failResp = new EconomyResponse(-1, -1, EconomyResponse.ResponseType.FAILURE, "Exception");
     public final static HashSet<Player> players = new HashSet<>();
     public final static ConcurrentHashMap<UUID, Double> balances = new ConcurrentHashMap<>();
+    public final static ScheduledExecutorService ses = Executors.newScheduledThreadPool(1);
     final static Random rand = new Random();
+    public static Server server;
     static JavaPlugin plugin;
     static String configFolderPath;
     static String dataFolderPath;
@@ -46,7 +50,7 @@ public final class EconomyPlugin extends JavaPlugin {
     public void onEnable() {
         plugin = getPlugin(EconomyPlugin.class);
         configFolderPath = plugin.getDataFolder().getAbsolutePath();
-        final Server server = getServer();
+        server = getServer();
         Config.loadConfig();
         dataFolderPath = configFolderPath + "/playerdata";
         final File dataFolder = new File(dataFolderPath);

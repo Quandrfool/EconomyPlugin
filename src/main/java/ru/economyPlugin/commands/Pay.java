@@ -1,6 +1,5 @@
 package ru.economyPlugin.commands;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -19,7 +18,7 @@ public class Pay implements CommandExecutor, TabCompleter {
         if (sender instanceof Player) {
             if (!players.contains(sender)) return false;
             if (args.length == 2) {
-                final Player player = Bukkit.getPlayer(args[0]);
+                final Player player = server.getPlayer(args[0]);
                 if (player != null && players.contains(player)) {
                     try {
                         final double amount = Double.parseDouble(args[1]);
